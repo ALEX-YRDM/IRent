@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--绑定一个对应的Dao/Mapper接口-->
+<mapper namespace="com.xdu.irent.dao.AdminMapper">
+    <select id="getAllRenter" resultType="renter">
+        select * from rent.t_renter;
+    </select>
+    <select id="getAllLandlord" resultType="landlord">
+        select * from rent.t_landlord;
+    </select>
+    <select id="getAllHouse" resultType="house">
+        select * from rent.t_house;
+    </select>
+    <select id="getAllRecord" resultType="record">
+        select * from rent.t_record;
+    </select>
+
+</mapper>

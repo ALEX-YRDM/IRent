@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--绑定一个对应的Dao/Mapper接口-->
+<mapper namespace="com.xdu.irent.dao.RenterMapper">
+    <select id="findRenterByUsernameAndPassword" resultType="renter">
+        select * from rent.t_renter
+        where username=#{username} and password=#{password};
+    </select>
+    <insert id="addRenter" parameterType="renter">
+        insert into rent.t_renter (nickname, username, password, gender, phoneNumber, email, address, birthday) VALUES
+        (#{nickName},#{userName},#{password},#{gender},#{phoneNumber},#{email},#{address},#{birthday})
+    </insert>
+    <delete id="deleteRenterById" parameterType="Long">
+        delete from rent.t_renter where id=#{id}
+    </delete>
+    <update id="updateRenter" parameterType="renter">
+        update
+            rent.t_renter
+        set
+            nickname=#{nickName},
+            username=#{userName},
+            password=#{password},
+            gender=#{gender},
+            phoneNumber=#{phoneNumber},
+            email=#{email},
+            address=#{address},
+            birthday=#{birthday}
+        where id=#{id}
+    </update>
+    <select id="getNotRentedHouse" resultType="house">
+        select * from rent.t_house where state=0;
+    </select>
+    <select id="searchHouse" resultType="house">
+        select
+               *
+        from
+             rent.t_house
+        where
+              state=0
+         and
+            (title like concat('%',#{text},'%')
+        or
+              address like concat('%',#{text},'%')
+        or
+              houseType like concat('%',#{text},'%')
+              );
+    </select>
+</mapper>

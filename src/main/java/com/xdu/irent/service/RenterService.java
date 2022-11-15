@@ -1,29 +1,26 @@
-package com.xdu.irent.dao;
+package com.xdu.irent.service;
 
 import com.xdu.irent.pojo.House;
 import com.xdu.irent.pojo.Renter;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * @author zbq
- * @date 2022/10/25 13:15
+ * @date 2022/11/10 15:03
  */
-@Mapper
-@Repository
-public interface RenterMapper {
+public interface RenterService {
     //根据用户名密码查询租客
-    Renter findRenterByUsernameAndPassword(@Param("username") String username,@Param("password") String password);
+    Renter findRenterByUsernameAndPassword(String username, String password);
     //增加租客
     int addRenter(Renter renter);
     //根据id删除租客
-    void deleteRenterById(@Param("id") Long id);
+    void deleteRenterById(Long id);
     //修改租客信息
     int updateRenter(Renter renter);
-
+    //获取所有未出租房屋
     List<House> getNotRentedHouse();
 
     List<House> searchHouse(@Param("text") String text);

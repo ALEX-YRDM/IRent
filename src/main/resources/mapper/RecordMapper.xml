@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--绑定一个对应的Dao/Mapper接口-->
+<mapper namespace="com.xdu.irent.dao.RecordMapper">
+    <insert id="addRecord" parameterType="record">
+        insert into rent.t_record (r_id, l_id, h_id) VALUES
+        (#{r_id},#{l_id},#{h_id})
+    </insert>
+    <delete id="deleteRecordById" parameterType="Long">
+        delete from rent.t_record where id=#{id}
+    </delete>
+
+</mapper>

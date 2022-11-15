@@ -4,13 +4,13 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--绑定一个对应的Dao/Mapper接口-->
 <mapper namespace="com.xdu.irent.dao.HouseMapper">
-    <select id="findAll" resultMap="house">
+    <select id="findAll" resultType="house">
         select * from rent.t_house;
     </select>
     <insert id="addHouse" parameterType="house">
         insert into
-            rent.t_house (id, landlord_id, title, address, houseType, rooms, money, photo, updateTime, state)
-        values (#{id},#{l_id},#{title},#{address},#{houseType},#{rooms},#{money},#{photo},#{updateTime},#{state});
+            rent.t_house ( landlord_id, title, address, houseType, rooms, money, photo, updateTime, state)
+        values (#{landlord_id},#{title},#{address},#{houseType},#{rooms},#{money},#{photo},#{updateTime},#{state});
     </insert>
     <delete id="deleteHouseById" parameterType="Long">
          delete  from rent.t_house where id=#{id}
@@ -19,7 +19,6 @@
         update
             rent.t_house
         set
-            landlord_id=#{l_id},
             title=#{title},
             address=#{address},
             houseType=#{houseType},
@@ -29,5 +28,13 @@
             updateTime=#{updateTime},
             state=#{state}
         where id=#{id}
+    </update>
+    <update id="updateHouseState" parameterType="Long">
+        update
+            rent.t_house
+        set
+            state=#{state}
+        where
+            id=#{id}
     </update>
 </mapper>

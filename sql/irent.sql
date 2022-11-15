@@ -6,10 +6,10 @@ create table t_renter(
                          username varchar(255) not null unique,
                          password varchar(255) not null,
                          gender int default 0,
-                         phoneNumber varchar(255) not null unique,
-                         email varchar(255) not null,
-                         address varchar(255) not null,
-                         birthday datetime not null
+                         phoneNumber varchar(255) default null,
+                         email varchar(255) default null,
+                         address varchar(255) default null,
+                         birthday datetime default null
 )ENGINE =InnoDB CHARSET =utf8;
 
 create table t_landlord(
@@ -17,22 +17,24 @@ create table t_landlord(
                            nickname varchar(255) not null unique,
                            username varchar(255) not null unique,
                            password varchar(255) not null,
-                           phoneNumber varchar(255) not null unique,
-                           email varchar(255) not null,
-                           address varchar(255) not null
+                           phoneNumber varchar(255) default null,
+                           email varchar(255) default null,
+                           address varchar(255) default null,
+                           birthday datetime default null,
+                           gender int default 0
 )ENGINE =InnoDB CHARSET =utf8;
 
 create table t_house(
                         id bigint(20) primary key auto_increment,
                         landlord_id bigint(20),
-                        title varchar(255) not null,
-                        address varchar(255) not null,
-                        houseType varchar(255) not null,
-                        rooms int not null default 0,
-                        money double not null  default 0,
-                        photo varchar(255) not null,
+                        title varchar(255) default null,
+                        address varchar(255) default null,
+                        houseType varchar(255) default null,
+                        rooms int  default 0,
+                        money numeric(12,2)  default 0,
+                        photo varchar(255) default null,
                         updateTime timestamp,
-                        state int not null,
+                        state int default null,
                         constraint fk_house_landlord foreign key (landlord_id) references t_landlord(id)
 )ENGINE =InnoDB CHARSET =utf8;
 
@@ -46,6 +48,8 @@ create table t_record(
                          foreign key (l_id) references t_landlord(id),
                          foreign key (h_id) references t_house(id)
 )ENGINE =InnoDB CHARSET =utf8;
+
+
 
 
 

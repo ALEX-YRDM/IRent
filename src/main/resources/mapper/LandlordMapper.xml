@@ -10,10 +10,10 @@
     </select>
     <insert id="addLandlord" parameterType="landlord">
         insert into rent.t_landlord
-        (id, nickname, username, password, phoneNumber, email, address) VALUES
-        (#{id},#{nickname},#{username},#{password},#{phoneNumber},#{email},#{address});
+        ( nickname, username, password, phoneNumber, email, address,birthday,gender) VALUES
+        (#{nickName},#{userName},#{password},#{phoneNumber},#{email},#{address},#{birthday},#{gender});
     </insert>
-    <delete id="deleteById" parameterType="int">
+    <delete id="deleteById" parameterType="Long">
         delete from rent.t_landlord where id=#{id}
     </delete>
     <update id="updateLandlord" parameterType="landlord">
@@ -28,4 +28,8 @@
         where id=#{id}
 
     </update>
+    <select id="getHouseByLid" resultType="house">
+        select * from rent.t_house where landlord_id=#{lid};
+    </select>
+
 </mapper>

@@ -3,6 +3,7 @@ package com.xdu.irent.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.List;
@@ -23,7 +24,6 @@ public class Renter {
     private String phoneNumber;
     private String email;
     private String address;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
-
-    private List<House> favoriteHouse;
 }
